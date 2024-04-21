@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import './App.css';
-import PropTypes from "prop-types"
 import Section from './components/Section';
 import FeedbackOptions from './components/FeedbackOptions';
 import Statistics from './components/Statistics';
 
 function App() {
 
-  const [step] = useState(1)
+  const step = 1
   const [feedbackData, setFeedbackData] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    Good: 0,
+    Neutral: 0,
+    Bad: 0,
   });
 
   const handleLeaveFeedback = (option) => {
@@ -19,7 +18,10 @@ function App() {
       ...feedbackData,
       [option]: feedbackData[option] + step,
     });
+    setHasFeedback(true)
   };
+
+  const [hasFeedback, setHasFeedback] = useState ( false )
 
   return (
     <>
@@ -27,16 +29,10 @@ function App() {
         <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={handleLeaveFeedback} />
       </Section>
       <Section title="Statistics">
-        <Statistics good={feedbackData.good} neutral={feedbackData.neutral} bad={feedbackData.bad} />
+        <Statistics good={feedbackData.Good} neutral={feedbackData.Neutral} bad={feedbackData.Bad} />
       </Section>
     </>
   );
 }
 
 export default App;
-
-App.propTypes = {
-  step: PropTypes.number,
-  feedbackData: PropTypes.object,
-  option: PropTypes.string,
-}

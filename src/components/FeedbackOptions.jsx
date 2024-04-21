@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { VoteButton }  from '../styled/styled-feedback';
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
+  
   return (
     <div>
       {options.map((option) => (
