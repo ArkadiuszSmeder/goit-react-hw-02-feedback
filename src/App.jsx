@@ -3,6 +3,7 @@ import './App.css';
 import Section from './components/Section';
 import FeedbackOptions from './components/FeedbackOptions';
 import Statistics from './components/Statistics';
+import Notification from './components/Notification';
 
 function App() {
 
@@ -28,9 +29,13 @@ function App() {
       <Section title="Please leave feedback">
         <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={handleLeaveFeedback} />
       </Section>
+      {hasFeedback ? (
       <Section title="Statistics">
         <Statistics good={feedbackData.Good} neutral={feedbackData.Neutral} bad={feedbackData.Bad} />
       </Section>
+       ) : (
+      <Notification message="There is no feedback"></Notification>
+       )}
     </>
   );
 }
